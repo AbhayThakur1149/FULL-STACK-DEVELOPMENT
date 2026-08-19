@@ -1,0 +1,22 @@
+Express: framework that is used on node for backend web development.
+
+Script : 
+
+Project Structure: 
+Environment setting [.env]
+Paths
+Express Server
+Nodemon
+
+Routing:
+    Creating endpoint/api and handling request
+            get request 
+            app.get('/', (req, res)=>{
+                
+            });
+            app.all('/*splat', (req, res)=>{
+                
+            });
+
+Static file handling
+GET and POST
