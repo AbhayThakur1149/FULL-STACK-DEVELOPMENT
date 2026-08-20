@@ -20,3 +20,6 @@ Routing:
 
 Static file handling
 GET and POST
+firstly decide the method 
+get send data through url max upto 5kb
+dont send pass using get 

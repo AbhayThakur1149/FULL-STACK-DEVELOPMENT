@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'; // import the dotenv package to load environment variables from a .env file
 import express from 'express'; // this is the new way to import express in ES6 modules
+import path from 'path'; // import the path module to work with file and directory paths
 
 dotenv.config(); // Load environment variables from .env file
  const port = Number(process.env.PORT); // Get the port from environment variables or default to 3000
@@ -83,13 +84,22 @@ app.get('/users', (req, res) => { // define a route for the /users URL
     res.json(users); // send a JSON response to the client
 });
 
+const __dirname = import.meta.dirname;
+console.log(__dirname); // Get the current directory name
+
 app.get('/home', (req, res) => { // define a route for the /home URL
-    res.sendFile('C:/Users/abhay/OneDrive/Desktop/STUDY MATERIAL/3rd YEAR/FULL STACK/BACKEND/NODEJS/Lecture5/Express/src/Home.html'); // send the Home.html file as a response to the client
+    res.sendFile(path.join(__dirname, 'public', 'Home.html')); // send the Home.html file to the client
 });
+app.use(express.static(path.join(__dirname, 'public'))); // serve static files from the public directory
+
+// app.get('/logo.jpg', (req, res) => { // define a route for the /logo.jpg URL
+//     res.sendFile(path.join(__dirname, 'logo.jpg')); // send the logo.jpg file to the client
+// });
 
 app.all('/*splat', (req, res) => { // define a route for the /about URL
     res.status(404).send('Developer Error: Page not found'); // send a response to the client
 });
+
 
 // IMP point when the project is working on client side, production environment is used.
 // and when the project is working on server side, development environment is used.
